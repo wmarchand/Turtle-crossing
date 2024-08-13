@@ -11,19 +11,27 @@ class Player(Turtle):
         super().__init__()
         self.shape("turtle")
         self.penup()
-        self.goto(STARTING_POSITION)
+        self.reset_position()
         self.setheading(90)
-        self.move_speed = 0.1
+        #self.move_speed = 0.1
 
     def up(self):
-        new_y =  self.ycor() + MOVE_DISTANCE
-        self.goto(self.xcor(),new_y)
+        # new_y =  self.ycor() + MOVE_DISTANCE
+        # self.goto(self.xcor(),new_y)
+        self.forward(MOVE_DISTANCE)
 
     def down(self):
-        new_y =  self.ycor() - MOVE_DISTANCE
-        self.goto(self.xcor(),new_y)
+        # new_y =  self.ycor() - MOVE_DISTANCE
+        # self.goto(self.xcor(),new_y)
+        self.backward(MOVE_DISTANCE)
+
+    def is_at_finish_line(self):
+        if self.ycor() > FINISH_LINE_Y:
+            return True
+        else:
+            return False
 
     def reset_position(self):
         self.goto(STARTING_POSITION)
-        self.move_speed *= 0.9
+        #self.move_speed *= 0.9
         

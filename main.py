@@ -21,7 +21,7 @@ screen.onkey(player.down, "Down")
 
 game_is_on = True
 while game_is_on:
-    time.sleep(player.move_speed)
+    time.sleep(0.1)
     screen.update()
 
     car_manager.create_car()
@@ -34,9 +34,19 @@ while game_is_on:
     #         game_is_on = False
     #     i.move()
 
+    #Detect collision with car
+    for car in car_manager.cars:
+        if car.distance(player) < 20:
+            game_is_on = False
+            scoreboard.game_over()
+
     #next level
-    if player.ycor() > 280:
+    # if player.ycor() > 280:
+    #     scoreboard.increase_score()
+    #     player.reset_position()
+    if player.is_at_finish_line():
         scoreboard.increase_score()
         player.reset_position()
+        car_manager.level_up()
 
 screen.exitonclick()

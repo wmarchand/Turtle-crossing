@@ -6,11 +6,11 @@ STARTING_MOVE_DISTANCE = 5
 MOVE_INCREMENT = 10
 
 
-class CarManager(Turtle):
+class CarManager:
 
     def __init__(self):
-        super().__init__()
         self.cars = []
+        self.car_speed = STARTING_MOVE_DISTANCE
         # self.shape("square")
         # self.color(random.choice(COLORS))
         # self.shapesize(stretch_wid=1, stretch_len=2)
@@ -32,4 +32,7 @@ class CarManager(Turtle):
         # new_x = self.xcor() - STARTING_MOVE_DISTANCE
         # self.goto(new_x,self.ycor())
         for car in self.cars:
-            car.backward(STARTING_MOVE_DISTANCE)
+            car.backward(self.car_speed)
+
+    def level_up(self):
+        self.car_speed += MOVE_INCREMENT
